@@ -1,0 +1,104 @@
+# Aegir Smart Reconnaissance Platform Configuration
+# Version: 1.0.0
+
+# Global settings
+global:
+  timeout: 30.0
+  max_retries: 3
+  rate_limit: 0.1
+  max_concurrent: 20
+  output_dir: "reports"
+  log_level: "INFO"
+
+# Enumeration settings
+enumeration:
+  sources:
+    certificate_transparency:
+      enabled: true
+      timeout: 15.0
+      rate_limit: 0.2
+      max_retries: 2
+    dns_brute_force:
+      enabled: true
+      timeout: 5.0
+      rate_limit: 0.1
+      max_retries: 1
+      custom_params:
+        max_concurrent: 20
+        wordlist_size: 50
+    search_engines:
+      enabled: true
+      timeout: 10.0
+      rate_limit: 1.0
+      max_retries: 2
+    hackertarget:
+      enabled: true
+      timeout: 15.0
+      rate_limit: 2.0
+      max_retries: 2
+  
+  scoring:
+    strict:
+      min_confidence: 0.5
+      min_sources: 2
+      confidence_weight: 0.7
+      source_count_weight: 0.3
+    balanced:
+      min_confidence: 0.3
+      min_sources: 1
+      confidence_weight: 0.6
+      source_count_weight: 0.4
+    aggressive:
+      min_confidence: 0.2
+      min_sources: 1
+      confidence_weight: 0.5
+      source_count_weight: 0.5
+
+# Port scanning settings
+port_scanning:
+  common_ports: [21, 22, 23, 25, 53, 80, 110, 143, 443, 993, 995, 8080, 8443, 3306, 5432, 6379, 27017, 9200, 11211, 3389, 5900, 5984, 1433, 1521, 389, 636]
+  timeout: 5.0
+  max_workers: 50
+  rate_limit: 0.1
+
+# Technology fingerprinting settings
+tech_fingerprinting:
+  timeout: 10.0
+  max_concurrent: 10
+  confidence_threshold: 70
+
+# Vulnerability scanning settings
+vulnerability_scanning:
+  timeout: 10.0
+  max_concurrent: 5
+  severity_levels: ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+  enabled_checks:
+    - security_headers
+    - information_disclosure
+    - authentication
+    - configuration
+
+# Screenshot capture settings
+screenshot_capture:
+  viewport_width: 1920
+  viewport_height: 1080
+  timeout: 30000
+  max_concurrent: 3
+  output_dir: "screenshots"
+
+# Reporting settings
+reporting:
+  include_metadata: true
+  include_audit: true
+  include_raw_json: true
+  max_json_length: 5000
+  html_template: "default"
+  export_formats: ["json", "html", "yaml"]
+
+# Security settings
+security:
+  validate_inputs: true
+  sanitize_filenames: true
+  max_domain_length: 253
+  allowed_protocols: ["http", "https"]
+  user_agent_rotation: true 
