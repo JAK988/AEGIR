@@ -1,62 +1,71 @@
 # 🔥 AEGIR - Offensive Reconnaissance Tool
 
-**AEGIR** est un outil de reconnaissance offensive automatisé et professionnel qui combine énumération de sous-domaines, scan de ports, fingerprinting technologique, capture d'écrans et analyse de vulnérabilités en un seul workflow intégré.
+**AEGIR** is a professional, automated offensive reconnaissance tool that combines subdomain enumeration, port scanning, technology fingerprinting, screenshot capture, and vulnerability analysis into a single integrated workflow.
 
-## 🚀 Fonctionnalités
+## 🚀 Features
 
-### 🔍 Énumération de Sous-domaines
-- **Sources multiples** : Certificate Transparency (crt.sh), HackerTarget API, DNS brute force
-- **Déduplication intelligente** : Résolution CNAME, normalisation, élimination des doublons
-- **Filtrage wildcard** : Détection et élimination automatique des faux positifs DNS
-- **Wordlist configurable** : 60+ mots courants + extensible
+### 🔍 Subdomain Enumeration
 
-### 🔌 Scan de Ports
-- **Scan asynchrone** : httpx pour les ports web, socket pour les autres services
-- **Détection de services** : 30+ ports courants mappés (HTTP, HTTPS, SSH, FTP, etc.)
-- **Extraction de métadonnées** : Status HTTP, titre, headers, temps de réponse
-- **Rate limiting** : Contrôle de la charge réseau et respect des limites
+* **Multiple sources**: Certificate Transparency (crt.sh), HackerTarget API, DNS brute force
+* **Smart deduplication**: CNAME resolution, normalization, duplicate removal
+* **Wildcard filtering**: Automatic detection and removal of DNS false positives
+* **Configurable wordlist**: 60+ common words + extensible
 
-### 🧬 Fingerprinting Technologique
-- **Signatures avancées** : Headers HTTP, contenu HTML/JS, meta tags
-- **6 catégories** : Web Frameworks, Web Servers, Programming Languages, Cloud Platforms, Databases, DevOps Tools
-- **Scoring de confiance** : 70-90% selon la fiabilité des signatures
-- **Extraction de versions** : Parsing automatique des headers
+### 🔌 Port Scanning
 
-### 📸 Capture d'Écrans
-- **Playwright headless** : Capture haute qualité en 1920x1080
-- **Rotation User-Agent** : 5 User-Agents différents pour éviter la détection
-- **Gestion des timeouts** : 30s par page avec attente du chargement complet
-- **Nommage intelligent** : Fichiers organisés par domaine/port
+* **Asynchronous scanning**: httpx for web ports, socket for other services
+* **Service detection**: 30+ common ports mapped (HTTP, HTTPS, SSH, FTP, etc.)
+* **Metadata extraction**: HTTP status, title, headers, response time
+* **Rate limiting**: Controls network load and respects limits
 
-### 🛡️ Analyse de Vulnérabilités
-- **Headers de sécurité** : HSTS, CSP, X-Frame-Options, etc.
-- **Divulgation d'informations** : Headers serveur, listing de répertoires
-- **Authentification** : Endpoints sensibles sans protection
-- **Configuration** : Mode debug, erreurs détaillées
-- **Scoring CVSS** : Évaluation automatique du niveau de risque
+### 🧬 Technology Fingerprinting
 
-### 📊 Rapports Professionnels
-- **Export JSON** : Données structurées pour intégration
-- **Export HTML** : Rapport visuel avec métriques et screenshots
-- **Résumé CLI** : Statistiques en temps réel
-- **Corrélation** : Lien entre services, technologies et vulnérabilités
+* **Advanced signatures**: HTTP headers, HTML/JS content, meta tags
+* **6 categories**: Web Frameworks, Web Servers, Programming Languages, Cloud Platforms, Databases, DevOps Tools
+* **Confidence scoring**: 70-90% based on signature reliability
+* **Version extraction**: Automatic header parsing
+
+### 📸 Screenshot Capture
+
+* **Headless Playwright**: High-quality capture at 1920x1080
+* **User-Agent rotation**: 5 different user-agents to avoid detection
+* **Timeout management**: 30s per page with full load wait
+* **Smart naming**: Files organized by domain/port
+
+### 🛡️ Vulnerability Analysis
+
+* **Security headers**: HSTS, CSP, X-Frame-Options, etc.
+* **Information disclosure**: Server headers, directory listing
+* **Authentication**: Unprotected sensitive endpoints
+* **Configuration**: Debug mode, detailed errors
+* **CVSS scoring**: Automatic risk level evaluation
+
+### 📊 Professional Reports
+
+* **JSON export**: Structured data for integration
+* **HTML export**: Visual report with metrics and screenshots
+* **CLI summary**: Real-time statistics
+* **Correlation**: Link between services, technologies, and vulnerabilities
 
 ## 🛠️ Installation
 
-### Prérequis
-- Python 3.8+
-- pip3
+### Requirements
 
-### Installation des dépendances
+* Python 3.8+
+* pip3
+
+### Install dependencies
+
 ```bash
-# Installation des packages Python
+# Install Python packages
 pip3 install httpx dnspython beautifulsoup4 playwright
 
-# Installation du navigateur Playwright
+# Install Playwright browser
 playwright install chromium
 ```
 
-### Installation rapide
+### Quick install
+
 ```bash
 git clone <repository>
 cd AEGIR
@@ -64,19 +73,22 @@ pip3 install -r requirements.txt
 playwright install chromium
 ```
 
-## 📖 Utilisation
+## 📖 Usage
 
-### Scan basique
+### Basic scan
+
 ```bash
 python3 main.py example.com
 ```
 
-### Scan avec rapport personnalisé
+### Scan with custom report
+
 ```bash
 python3 main.py example.com --output my_report
 ```
 
-### Exemple de sortie
+### Sample output
+
 ```
 [+] Starting Aegir scan for example.com
 [+] Scan completed in 45.23 seconds
@@ -92,30 +104,33 @@ python3 main.py example.com --output my_report
 
 ## 🏗️ Architecture
 
-### Modules principaux
+### Main Modules
+
 ```
 AEGIR/
-├── main.py                 # Orchestrateur principal
-├── subdomain_enum.py       # Énumération de sous-domaines
-├── port_scanner.py         # Scan de ports
-├── tech_fingerprint.py     # Fingerprinting technologique
-├── screenshot_capture.py   # Capture d'écrans
-├── vuln_scanner.py         # Analyse de vulnérabilités
-└── README.md              # Documentation
+├── main.py                 # Main orchestrator
+├── subdomain_enum.py       # Subdomain enumeration
+├── port_scanner.py         # Port scanning
+├── tech_fingerprint.py     # Technology fingerprinting
+├── screenshot_capture.py   # Screenshot capture
+├── vuln_scanner.py         # Vulnerability analysis
+└── README.md               # Documentation
 ```
 
 ### Workflow
-1. **Énumération** → Découverte des sous-domaines
-2. **Scan de ports** → Identification des services actifs
-3. **Fingerprinting** → Détection des technologies
-4. **Capture d'écrans** → Documentation visuelle
-5. **Analyse vulnérabilités** → Évaluation des risques
-6. **Agrégation** → Corrélation des résultats
-7. **Export** → Génération des rapports
 
-## 📊 Exemples de Rapports
+1. **Enumeration** → Discover subdomains
+2. **Port scan** → Identify active services
+3. **Fingerprinting** → Detect technologies
+4. **Screenshot capture** → Visual documentation
+5. **Vulnerability analysis** → Risk assessment
+6. **Aggregation** → Correlate results
+7. **Export** → Generate reports
 
-### Résumé JSON
+## 📊 Report Examples
+
+### JSON Summary
+
 ```json
 {
   "summary": {
@@ -131,23 +146,26 @@ AEGIR/
 }
 ```
 
-### Rapport HTML
-- **Résumé exécutif** avec métriques clés
-- **Services découverts** avec technologies et vulnérabilités
-- **Screenshots intégrés** pour documentation visuelle
-- **Code couleur** pour les niveaux de vulnérabilité
+### HTML Report
 
-## 🔧 Configuration Avancée
+* **Executive summary** with key metrics
+* **Discovered services** with technologies and vulnerabilities
+* **Embedded screenshots** for visual documentation
+* **Color coding** for vulnerability severity levels
 
-### Personnalisation des ports
+## 🔧 Advanced Configuration
+
+### Customizing ports
+
 ```python
-# Dans main.py
+# In main.py
 self.web_ports = [80, 443, 8080, 8443, 3000, 4000, 5000, 8000, 9000]
 ```
 
-### Ajout de signatures technologiques
+### Adding technology signatures
+
 ```python
-# Dans tech_fingerprint.py
+# In tech_fingerprint.py
 "New Framework": {
     "headers": ["x-powered-by"],
     "html": ["new-framework"],
@@ -156,118 +174,126 @@ self.web_ports = [80, 443, 8080, 8443, 3000, 4000, 5000, 8000, 9000]
 }
 ```
 
-### Configuration des vulnérabilités
+### Custom vulnerability configuration
+
 ```python
-# Dans vuln_scanner.py
+# In vuln_scanner.py
 "Custom Vulnerability": {
-    "description": "Description personnalisée",
+    "description": "Custom description",
     "severity": "HIGH",
     "indicators": ["custom-indicator"],
     "cvss_score": 7.5
 }
 ```
 
-## 🎯 Cas d'Usage
+## 🎯 Use Cases
 
-### Pentest Externe
+### External Pentest
+
 ```bash
-# Scan complet d'un domaine cible
+# Full scan of a target domain
 python3 main.py target-company.com --output pentest_report
 ```
 
 ### Bug Bounty
+
 ```bash
-# Scan rapide pour identification de surface d'attaque
+# Quick scan for attack surface identification
 python3 main.py bugbounty-target.com
 ```
 
-### Audit de Sécurité
+### Security Audit
+
 ```bash
-# Documentation complète pour rapport d'audit
+# Complete documentation for audit report
 python3 main.py audit-domain.com --output security_audit
 ```
 
 ## ⚡ Performance
 
-### Optimisations
-- **Scan asynchrone** : Parallélisation des requêtes
-- **Rate limiting** : Respect des limites de bande passante
-- **Cache DNS** : Réutilisation des résolutions
-- **Timeouts** : Gestion des services lents
+### Optimizations
 
-### Métriques typiques
-- **100 sous-domaines** : ~2-3 minutes
-- **50 services web** : ~1-2 minutes
-- **Capture d'écrans** : ~30s par page
-- **Analyse vulnérabilités** : ~5s par service
+* **Asynchronous scan**: Parallelized requests
+* **Rate limiting**: Bandwidth-aware scanning
+* **DNS cache**: Reuses resolutions
+* **Timeouts**: Handles slow services
 
-## 🔒 Sécurité et Éthique
+### Typical metrics
 
-### Bonnes pratiques
-- **Autorisation** : Toujours obtenir une autorisation écrite
-- **Rate limiting** : Respecter les limites des services
-- **Logs** : Documenter toutes les activités
-- **Rapports** : Classifier les informations sensibles
+* **100 subdomains**: \~2-3 minutes
+* **50 web services**: \~1-2 minutes
+* **Screenshot capture**: \~30s per page
+* **Vulnerability analysis**: \~5s per service
+
+## 🔒 Security & Ethics
+
+### Best practices
+
+* **Authorization**: Always obtain written permission
+* **Rate limiting**: Respect service limits
+* **Logs**: Document all activity
+* **Reports**: Classify sensitive information
 
 ### Limitations
-- **Scope** : Respecter le périmètre défini
-- **Impact** : Éviter les tests destructifs
-- **Légalité** : Conformité aux lois locales
+
+* **Scope**: Stay within the defined scope
+* **Impact**: Avoid destructive testing
+* **Legality**: Comply with local laws
 
 ## 🤝 Contribution
 
-### Développement
-1. Fork le projet
-2. Créer une branche feature
-3. Implémenter les améliorations
-4. Tester exhaustivement
-5. Soumettre une pull request
+### Development
 
-### Améliorations souhaitées
-- [ ] Intégration Nuclei
-- [ ] Scan SSL/TLS avancé
-- [ ] Détection de WAF
-- [ ] API REST
-- [ ] Interface web
-- [ ] Intégration CI/CD
+1. Fork the project
+2. Create a feature branch
+3. Implement improvements
+4. Test thoroughly
+5. Submit a pull request
 
-## 📄 Licence
+### Desired Improvements
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+* [ ] Nuclei integration
+* [ ] Advanced SSL/TLS scanning
+* [ ] WAF detection
+* [ ] REST API
+* [ ] Web interface
+* [ ] CI/CD integration
 
-## ⚠️ Avertissement
+## 📄 License
 
-**AEGIR est un outil de test de pénétration. Son utilisation doit être strictement limitée aux environnements autorisés. Les auteurs ne sont pas responsables de l'utilisation abusive de cet outil.**
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## ⚠️ Disclaimer
+
+**AEGIR is a penetration testing tool. Its use must be strictly limited to authorized environments. The authors are not responsible for any misuse of this tool.**
 
 ## 📞 Support
 
-- **Issues** : GitHub Issues
-- **Documentation** : README.md
-- **Exemples** : Dossier `examples/`
+* **Issues**: GitHub Issues
+* **Documentation**: README.md
+* **Examples**: `examples/` folder
 
 ---
 
-**AEGIR** - Outil de reconnaissance offensive professionnel 🔥 
+**AEGIR** - Professional offensive reconnaissance tool 🔥
 
-## 🙏 Crédits
+## 👏 Credits
 
-Développé et orchestré par **Antoine Kojfer (JAK) Disconnect**
+Developed and orchestrated by **Antoine Kojfer (JAK) Disconnect**
 
 ---
 
-## 📝 Note de version et Roadmap
+## 📝 Version Notes and Roadmap
 
-### Version 1.0 — Proof of Concept Avancé
-- Architecture modulaire, pipeline complet, configuration externalisée, logging structuré, selftests réutilisables.
-- Développé par Antoine Kojfer (JAK) - Senior Security Researcher
-- Statut : Proof of Concept avancé, prêt pour évaluation, non production-ready.
+### Version 1.0 — Advanced Proof of Concept
 
-### Roadmap de développement
-- **v1.1** : Tests de robustesse, vulnérabilités avancées, gestion d'erreurs
-- **v1.2** : Performance, API REST, monitoring
-- **v2.0** : Wordlists, reporting avancé, configuration avancée
-- **v2.1+** : Interface utilisateur, IA, collaboration
+* Modular architecture, complete pipeline, externalized configuration, structured logging, reusable self-tests.
+* Developed by Antoine Kojfer (JAK) - Senior Security Researcher
+* Status: Advanced proof of concept, ready for evaluation, not production-ready.
 
+### Development Roadmap
 
-
---- 
+* **v1.1**: Robustness testing, advanced vulnerabilities, error handling
+* **v1.2**: Performance, REST API, monitoring
+* **v2.0**: Wordlists, advanced reporting, advanced configuration
+* **v2.1+**: User interface, AI integration, collaboration
