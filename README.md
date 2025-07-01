@@ -268,7 +268,6 @@ Développé et orchestré par **Antoine Kojfer (JAK) Disconnect**
 - **v2.0** : Wordlists, reporting avancé, configuration avancée
 - **v2.1+** : Interface utilisateur, IA, collaboration
 
-### Recommandation
-> "Aegir est un excellent proof of concept, propre, modulaire, documenté, mais nécessite des améliorations critiques pour un usage production. Suivre la roadmap pour garantir la robustesse, la sécurité et l'intégration."
+
 
 --- 
